@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sales Performance vs Target Dashboard</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="page">
+<div class="pf">
+  <header id="header">
+    <p class="pf-eyebrow">Portfolio project · Sales &amp; Revenue</p>
+    <h1 class="pf-title">Sales Performance vs Target — Industrial Distribution</h1>
+    <div class="pf-meta"><span class="pf-tag">Sample data</span><span>12 months: Nov 2025 – Oct 2026</span><span>5 regions · 5 product lines · 3 channels</span></div>
+    <p class="pf-lede" id="takeaway" data-read lang="en">In <b data-draw="win" data-source="kpis" data-field="window" data-row="0">—</b>, revenue reached <b data-draw="rev" data-source="kpis" data-field="revenue" data-row="0">—</b>, <b data-draw="att" data-source="kpis" data-field="attainment_pct" data-row="0">—</b> of target. Over the full year the team met its monthly target in <b data-draw="mot" data-source="kpis" data-field="months_on_target" data-row="0">—</b> of 12 months, missing plan through the winter months before recovering in the fall.</p>
+  </header>
+
+  <section class="pf-kpis" id="kpis" aria-label="Key figures, Aug–Oct 2026 vs May–Jul 2026">
+    <div class="pf-card" id="kpi-rev"><p class="pf-kpi-label">Revenue · last 3 months</p><p class="pf-kpi-val" data-draw="k_rev" data-source="kpis" data-field="revenue" data-row="0">—</p><p class="pf-kpi-foot"><span data-draw="c_rev" data-source="kpis" data-field="revenue_chg_pct" data-row="0">—</span><span>vs prior 3 months</span></p></div>
+    <div class="pf-card" id="kpi-att"><p class="pf-kpi-label">Target attainment</p><p class="pf-kpi-val" data-draw="k_att" data-source="kpis" data-field="attainment_pct" data-row="0">—</p><p class="pf-kpi-foot"><span data-draw="c_att" data-source="kpis" data-field="attainment_chg_pts" data-row="0">—</span><span>vs prior 3 months</span></p></div>
+    <div class="pf-card" id="kpi-margin"><p class="pf-kpi-label">Gross margin</p><p class="pf-kpi-val" data-draw="k_mg" data-source="kpis" data-field="margin_pct" data-row="0">—</p><p class="pf-kpi-foot"><span data-draw="c_mg" data-source="kpis" data-field="margin_chg_pts" data-row="0">—</span><span>vs prior 3 months</span></p></div>
+    <div class="pf-card" id="kpi-aov"><p class="pf-kpi-label">Average order value</p><p class="pf-kpi-val" data-draw="k_aov" data-source="kpis" data-field="avg_order_value" data-row="0">—</p><p class="pf-kpi-foot"><span data-draw="c_aov" data-source="kpis" data-field="aov_chg_pct" data-row="0">—</span><span>vs prior 3 months</span></p></div>
+    <div class="pf-card" id="kpi-new"><p class="pf-kpi-label">New customers</p><p class="pf-kpi-val" data-draw="k_new" data-source="kpis" data-field="new_customers" data-row="0">—</p><p class="pf-kpi-foot"><span data-draw="c_new" data-source="kpis" data-field="new_customers_chg_pct" data-row="0">—</span><span>vs prior 3 months</span></p></div>
+  </section>
+
+  <section class="pf-card" id="rev-trend" style="margin-bottom: var(--cds-gap-md)">
+    <h2 class="pf-h">Monthly revenue vs target</h2>
+    <p class="pf-sub">Hover for the month's revenue and target</p>
+    <div class="pf-chart" data-draw="revChart" data-source="monthly"></div>
+  </section>
+
+  <div class="pf-grid">
+    <section class="pf-card" id="attainment">
+      <h2 class="pf-h">Target attainment by month</h2>
+      <p class="pf-sub">Revenue ÷ monthly target; dashed line marks 100%</p>
+      <div class="pf-chart" data-draw="attChart" data-source="monthly"></div>
+    </section>
+    <section class="pf-card" id="regions">
+      <h2 class="pf-h">Revenue by region</h2>
+      <p class="pf-sub">Last 12 months · South Central (home market) leads</p>
+      <div class="pf-chart pf-short" data-draw="regionChart" data-source="regions"></div>
+    </section>
+  </div>
+
+  <div class="pf-grid">
+    <section class="pf-card" id="channels">
+      <h2 class="pf-h">Revenue share by channel</h2>
+      <p class="pf-sub">Last 12 months</p>
+      <div class="pf-chart pf-short" data-draw="channelChart" data-source="channels"></div>
+    </section>
+    <section class="pf-card" id="margin-cat">
+      <h2 class="pf-h">Gross margin by product line</h2>
+      <p class="pf-sub">Last 12 months · highest-revenue lines are not the most profitable</p>
+      <div class="pf-chart pf-short" data-draw="marginChart" data-source="categories"></div>
+    </section>
+  </div>
+
+  <section class="pf-card" id="categories">
+    <h2 class="pf-h">Product line detail</h2>
+    <p class="pf-sub">Last 12 months, sorted by revenue</p>
+    <div class="pf-tablewrap">
+      <table class="pf-table" data-source="categories" data-row-key="category">
+        <thead><tr><th data-field="category">Product line</th><th class="num" data-field="revenue">Revenue</th><th class="num" data-field="share_pct">Share</th><th class="num" data-field="gross_profit">Gross profit</th><th class="num" data-field="margin_pct">Margin</th><th class="num" data-field="orders">Orders</th></tr></thead>
+        <tbody data-draw="catRows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <details class="pf-about" id="about">
+    <summary>About this dashboard: data, metrics and method</summary>
+    <dl>
+      <dt>Business question</dt><dd>Are we hitting revenue targets, and which regions, channels and product lines drive revenue and profit?</dd>
+      <dt>Data</dt><dd>~13,500 synthetic order lines and a monthly target plan for a B2B industrial distributor. Created for this portfolio; not company data.</dd>
+      <dt>Target attainment</dt><dd>Revenue ÷ planned revenue target for the same period.</dd>
+      <dt>Gross margin</dt><dd>(Revenue − cost of goods) ÷ revenue, after discounts.</dd>
+      <dt>Average order value</dt><dd>Revenue ÷ number of orders.</dd>
+      <dt>Comparison</dt><dd>Headline figures compare Aug–Oct 2026 with May–Jul 2026.</dd>
+      <dt>Method</dt><dd>Python (pandas) to clean and aggregate; KPI logic mirrors SQL group-bys; visualized with D3.</dd>
+    </dl>
+    <p>Recommended actions from this view: protect Safety Equipment and Tools &amp; Hardware (highest margin) in promotions, review discounting on Packaging, and set a recovery plan for the spring dip using Q1 pipeline coverage.</p>
+  </details>
+  <p class="pf-foot">Portfolio project built with Python (pandas) and D3.js · All data is synthetic. Source code and data are in this repository.</p>
+</div>
+<script src="d3.min.js"></script>
+<script src="data.js"></script>
+<script src="dash-lite.js"></script>
+<script src="charts.js"></script>
+<script>
+  const f = DC.f;
+  dash.draw('win', DC.cell('kpis', 'window', (v) => v));
+  dash.draw('rev', DC.cell('kpis', 'revenue', f.usd));
+  dash.draw('att', DC.cell('kpis', 'attainment_pct', f.pct1));
+  dash.draw('mot', DC.cell('kpis', 'months_on_target', f.int));
+  dash.draw('k_rev', DC.cell('kpis', 'revenue', f.usd));
+  dash.draw('c_rev', DC.chip('kpis', 'revenue_chg_pct', f.sPct, true));
+  dash.draw('k_att', DC.cell('kpis', 'attainment_pct', f.pct1));
+  dash.draw('c_att', DC.chip('kpis', 'attainment_chg_pts', f.sPts, true));
+  dash.draw('k_mg', DC.cell('kpis', 'margin_pct', f.pct1));
+  dash.draw('c_mg', DC.chip('kpis', 'margin_chg_pts', f.sPts, true));
+  dash.draw('k_aov', DC.cell('kpis', 'avg_order_value', f.usd));
+  dash.draw('c_aov', DC.chip('kpis', 'aov_chg_pct', f.sPct, true));
+  dash.draw('k_new', DC.cell('kpis', 'new_customers', f.int));
+  dash.draw('c_new', DC.chip('kpis', 'new_customers_chg_pct', f.sPct, true));
+
+  dash.draw('revChart', (el) => {
+    const rows = DC.rowsOf('monthly', el); if (!rows) return;
+    const c = dash.colors || [];
+    DC.line(el, rows, { x: 'month', series: [{ field: 'revenue', label: 'Revenue', color: c[0] }, { field: 'target', label: 'Target', color: 'var(--cds-chart-reference)', dashArray: '5 4' }], fmt: f.usdM, height: 260, aria: 'Line chart of monthly revenue against monthly target, Nov 2025 to Oct 2026' });
+  });
+  dash.draw('attChart', (el) => {
+    const rows = DC.rowsOf('monthly', el); if (!rows) return;
+    DC.line(el, rows, { x: 'month', series: [{ field: 'attainment_pct', label: 'Attainment' }], fmt: f.pct0, ref: { value: 100, label: '100% of target' }, aria: 'Line chart of monthly revenue as a percentage of target' });
+  });
+  dash.draw('regionChart', (el) => {
+    const rows = DC.rowsOf('regions', el); if (!rows) return;
+    DC.hbar(el, rows, { label: 'region', value: 'revenue', valueLabel: 'Revenue', fmt: f.usdM,
+      extra: [{ field: 'share_pct', label: 'Share', fmt: f.pct1 }, { field: 'margin_pct', label: 'Margin', fmt: f.pct1 }, { field: 'orders', label: 'Orders', fmt: f.int }],
+      aria: 'Horizontal bar chart of 12-month revenue by region' });
+  });
+  dash.draw('channelChart', (el) => {
+    const rows = DC.rowsOf('channels', el); if (!rows) return;
+    DC.hbar(el, rows, { label: 'channel', value: 'share_pct', valueLabel: 'Share of revenue', fmt: f.pct1, colorIndex: 1,
+      extra: [{ field: 'revenue', label: 'Revenue', fmt: f.usd }, { field: 'orders', label: 'Orders', fmt: f.int }],
+      aria: 'Horizontal bar chart of revenue share by sales channel' });
+  });
+  dash.draw('marginChart', (el) => {
+    const rows = DC.rowsOf('categories', el); if (!rows) return;
+    DC.hbar(el, rows.slice().sort((a, b) => b.margin_pct - a.margin_pct), { label: 'category', value: 'margin_pct', valueLabel: 'Gross margin', fmt: f.pct1, colorIndex: 2,
+      extra: [{ field: 'revenue', label: 'Revenue', fmt: f.usd }, { field: 'gross_profit', label: 'Gross profit', fmt: f.usd }],
+      aria: 'Horizontal bar chart of gross margin percentage by product line' });
+  });
+  dash.draw('catRows', DC.tbody('categories', [
+    { field: 'category' }, { field: 'revenue', fmt: f.usd, num: true }, { field: 'share_pct', fmt: f.pct1, num: true },
+    { field: 'gross_profit', fmt: f.usd, num: true }, { field: 'margin_pct', fmt: f.pct1, num: true }, { field: 'orders', fmt: f.int, num: true }
+  ]));
+</script>
+
+</main>
+</body>
+</html>
